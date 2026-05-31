@@ -1,6 +1,6 @@
 <?php
 class Database {
-    private $db;
+    public $db;
 
     function __construct() {
         $this->db = require "koneksi.php";
@@ -30,7 +30,7 @@ class Database {
     function find(string $table, string $col = "*") {
         if(!$table || $table == "") throw new Error("Table name is missing");
 
-        $result = $this->db->prepare("SELECT `{$col}` FROM `{$table}`");
+        $result = $this->db->prepare("SELECT {$col} FROM `{$table}`");
         $result->execute();
 
         return $result->fetchAll();
@@ -57,8 +57,4 @@ class Database {
     }
 
 }
-
-// $d = new Database();
-
-// print_r($d->getOneRow("users", "username", "admin"));
 ?>

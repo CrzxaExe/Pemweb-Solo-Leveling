@@ -1,4 +1,4 @@
-# SOLO LEVELING FAN WIKI
+# SOLO WIKI
 
 Kelompok 6
 
@@ -9,4 +9,4 @@ Anggota:
 
 ## Overview
 
-Solo Leveling Fan Wiki adalah website wiki ....
+Solo Wiki adalah website wikipedia dari ...

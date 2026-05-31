@@ -1,3 +1,34 @@
+@font-face {
+  font-family: "Novecento-Light";
+  src:
+    url("fonts/Novecentosanswide-Light.otf") format("opentype"),
+    url("fonts/Novecentosanswide-Light.woff2") format("woff2"),
+    url("fonts/Novecentosanswide-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Novecento";
+  src:
+    url("fonts/Novecentosanswide-Normal.otf") format("opentype"),
+    url("fonts/Novecentosanswide-Normal.woff2") format("woff2"),
+    url("fonts/Novecentosanswide-Normal.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Novecento-Demibold";
+  src:
+    url("fonts/Novecentosanswide-DemiBold.otf") format("opentype"),
+    url("fonts/SNovecentosanswide-DemiBold.woff2") format("woff2"),
+    url("fonts/SNovecentosanswide-DemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --color-primary-300: #71a8d5;
   --color-primary-500: #4595e0;

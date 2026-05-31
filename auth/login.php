@@ -29,7 +29,6 @@ if(isset($_POST["login"])) {
             header("Location: ../index.php");
         }
     }
-    
 }
 if(!empty($error)) print_r($error);
 ?>

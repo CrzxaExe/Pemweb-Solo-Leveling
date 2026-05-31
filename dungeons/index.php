@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../database.php";
+require "../utils/database.php";
 
 if(!empty($_SESSION) && $_SESSION['role'] == 'admin') {
     echo "admin";
