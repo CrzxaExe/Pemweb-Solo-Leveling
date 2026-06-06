@@ -20,7 +20,6 @@ CREATE TABLE humans(
 CREATE TABLE dungeons(
     dungeon_id VARCHAR(6) NOT NULL PRIMARY KEY UNIQUE,
     dungeon_name VARCHAR(100) NOT NULL,
-    dungeon_rank VARCHAR(10),
     dungeon_location TEXT,
     dungeon_description TEXT,
     dungeon_image TEXT
@@ -29,7 +28,6 @@ CREATE TABLE monsters(
     char_id VARCHAR(6) NOT NULL PRIMARY KEY UNIQUE,
     char_name VARCHAR(100) NOT NULL,
     char_species VARCHAR(50),
-    char_rank VARCHAR(10),
     dungeon_id VARCHAR(6) NOT NULL,
     char_description TEXT,
     char_image TEXT,

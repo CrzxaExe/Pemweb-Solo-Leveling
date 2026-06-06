@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form = [
         ":id" => $_POST["id"],
         ":name" => trim($_POST["name"] ?? ''),
-        ":rank" => trim($_POST["rank"] ?? ''),
         ":location" => trim($_POST["location"] ?? ''),
         ":description" => trim($_POST["description"] ?? ''),
         ":image" => $_POST["image"] ?: null,
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $sql = "UPDATE dungeons SET
                 dungeon_name = :name,
-                dungeon_rank = :rank,
                 dungeon_location = :location,
                 dungeon_description = :description,
                 dungeon_image = :image
@@ -52,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form action="" method="post">
         <input hidden type="text" name="id" id="id" value="<?= $dungeon['dungeon_id'] ?>">
         <input type="text" name="name" id="name" value="<?= $dungeon['dungeon_name'] ?>">
-        <input type="text" name="rank" id="rank" value="<?= $dungeon['dungeon_rank'] ?>">
         <input type="text" name="location" id="location" value="<?= $dungeon['dungeon_location'] ?>">
         <textarea name="description" id="description"><?= $dungeon['dungeon_description'] ?></textarea>
         <input type="text" name="image" id="image" value="<?= $dungeon['dungeon_image'] ?>">
