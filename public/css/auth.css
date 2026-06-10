@@ -1,0 +1,241 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background: linear-gradient(
+        135deg,
+        #13152b 0%,
+        #371849 30%,
+        #2a2150 55%,
+        #4a2261 78%,
+        #7a1d76 100%
+    );
+}
+
+.login-page{
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    background:#151E56;
+    filter:blur(110px);
+    pointer-events:none;
+    z-index:0;
+}
+
+.glow-blue{
+    width:55%;
+    height:140%;
+    left:-15%;
+    bottom:-50%;
+}
+
+.glow-purple{
+    width:50%;
+    height:120%;
+    right:-10%;
+    top:-40%;
+}
+
+.glow-bottom{
+    width:25%;
+    height:60%;
+    left:40%;
+    bottom:-50%;
+    filter:blur(80px);
+}
+
+/* ==========================
+   LOGIN CARD
+========================== */
+
+.login-card{
+    width:600px;
+
+    padding:48px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.10);
+
+    backdrop-filter:blur(20px);
+
+    position:relative;
+    z-index:10;
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+.login-title{
+    font-family:'Novecento-Demibold',sans-serif;
+
+    font-size:32px;
+    font-weight:600;
+
+    letter-spacing:-0.08em;
+
+    color:#fff;
+}
+
+/* ==========================
+   ERROR MESSAGE
+========================== */
+
+.login-error{
+    margin-top:18px;
+    padding:12px 16px;
+
+    border-radius:8px;
+    border:1px solid rgba(255,80,80,.5);
+
+    background:rgba(255,80,80,.12);
+}
+
+.login-error p{
+    color:#ff8080;
+    font-size:13px;
+    font-weight:500;
+}
+
+.login-error p + p{
+    margin-top:4px;
+}
+
+/* ==========================
+   FORM
+========================== */
+
+.login-form{
+    margin-top:60px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:32px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-size:26px;
+    font-weight:600;
+
+    letter-spacing:-0.08em;
+
+    color:#fff;
+
+    margin-bottom:10px;
+}
+
+.form-group input{
+    width:100%;
+
+    background:transparent;
+
+    border:none;
+    border-bottom:1px solid rgba(255,255,255,.75);
+
+    padding-bottom:12px;
+
+    color:#fff;
+
+    font-size:18px;
+    font-weight:400;
+
+    letter-spacing:-0.08em;
+
+    outline:none;
+}
+
+.form-group input::placeholder{
+    color:#8d8d8d;
+}
+
+/* ==========================
+   BUTTON
+========================== */
+
+.login-action{
+    margin-top:48px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+}
+
+.login-submit{
+    width:100%;
+    height:57px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#4A90E2;
+
+    color:#fff;
+
+    font-family:'Inter',sans-serif;
+    font-size:24px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.login-submit:hover{
+    transform:translateY(-2px);
+}
+
+.register-text{
+    margin-top:4px;
+
+    color:#fff;
+
+    font-size:12px;
+    font-weight:400;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .login-card{
+        width:90%;
+        height:auto;
+        min-height:460px;
+    }
+
+    .login-submit{
+        width:100%;
+    }
+}
