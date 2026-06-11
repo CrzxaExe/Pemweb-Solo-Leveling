@@ -1,9 +1,5 @@
 .official-card--anime {
-<<<<<<< HEAD
   background-image: url("../images/gambar 6.png");
-=======
-  background-image: url("../assets/images/gambar 6.png");
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
   background-repeat: no-repeat;
 
   background-size: calc(100% - 175px) 100%;
@@ -11,11 +7,7 @@
 }
 
 .official-card--novel {
-<<<<<<< HEAD
   background-image: url("../images/gambar 7.png");
-=======
-  background-image: url("../assets/images/gambar 7.png");
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
   background-repeat: no-repeat;
 
   background-size: calc(100% - 175px) 100%;
@@ -23,11 +15,7 @@
 }
 
 .official-card--webtoon {
-<<<<<<< HEAD
   background-image: url("../images/gambar 8.png");
-=======
-  background-image: url("../assets/images/gambar 8.png");
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
   background-repeat: no-repeat;
 
   background-size: calc(100% - 175px) 100%;
@@ -35,11 +23,7 @@
 }
 
 .official-card--tappytoon {
-<<<<<<< HEAD
   background-image: url("../images/gambar 9.png");
-=======
-  background-image: url("../assets/images/gambar 9.png");
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
   background-repeat: no-repeat;
 
   background-size: calc(100% - 175px) 100%;
@@ -101,11 +85,7 @@ a {
 }
 
 .hero__media {
-<<<<<<< HEAD
   background-image: url("../images/hero.gif");
-=======
-  background-image: url("../assets/images/hero.gif");
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
   background-size: cover;
   background-position: center 38%;
   transform: scale(1.015);
@@ -875,8 +855,4 @@ a {
   *::after {
     transition: none !important;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167

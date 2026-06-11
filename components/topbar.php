@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -19,9 +18,9 @@ $basePath = $basePath ?? '.';
     </a>
 
     <ul class="nav-links">
-        <li><a href="<?= $basePath ?>/index.php#main">Humans</a></li>
-        <li><a href="<?= $basePath ?>/index.php#main">Dungeons</a></li>
-        <li><a href="<?= $basePath ?>/index.php#official">Monsters</a></li>
+        <li><a href="<?= $basePath ?>/humans/index.php">Humans</a></li>
+        <li><a href="<?= $basePath ?>/dungeons/index.php">Dungeons</a></li>
+        <li><a href="<?= $basePath ?>/monsters/index.php">Monsters</a></li>
     </ul>
 
     <?php if (!empty($_SESSION['username'])): ?>
@@ -32,20 +31,3 @@ $basePath = $basePath ?? '.';
         <a class="login-btn" href="<?= $basePath ?>/auth/login.php">Login</a>
     <?php endif; ?>
 </nav>
-=======
-session_start();
-?>
-
-<header>
-    <div>
-        test
-    </div>
-    <?php if(!empty($_SESSION)): ?>
-        <div>
-            <form action="../auth/logout.php" method="POST" onsubmit="return confirm('Apakah anda ingin logout?')">
-                <input type="submit" value="Logout">
-            </form>
-        </div>
-    <?php endif; ?>
-</header>
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167

@@ -5,60 +5,34 @@ $error = [];
 if(isset($_POST["login"])) {
     $username = trim($_POST["username"] ?? '');
     $password = trim($_POST["password"] ?? '');
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
     if(strlen($username) < 1 || strlen($password) < 1) {
         $error[] = "Username atau password kosong";
     }
 
     if(empty($error)) {
-<<<<<<< HEAD
         $d = new Database();
 
-=======
-        echo "test " . $username;
-        $d = new Database();
-        
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
         $result = $d->findOne("users", "username", $username);
         if(empty($result)) $error[] = "Username tidak ditemukan";
 
         if(empty($error) && !password_verify($password, $result['password'])) {
             $error[] = "Password salah";
         } else {
-<<<<<<< HEAD
-=======
-            echo $username . " : " . $password;
-
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
             session_start();
             $_SESSION["username"] = $username;
             $_SESSION["role"] = $result['role'] ?? 'user';
 
             header("Location: ../index.php");
-<<<<<<< HEAD
             exit;
         }
     }
 }
 ?>
-=======
-        }
-    }
-}
-if(!empty($error)) print_r($error);
-?>
-
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Login | Solo Leveling Wiki</title>
 
     <link rel="stylesheet" href="../public/main.css">
@@ -133,16 +107,3 @@ if(!empty($error)) print_r($error);
 
 </body>
 </html>
-=======
-    <title>Document</title>
-</head>
-<body>
-    <form action="login.php" method="POST">
-        <input type="text" name="username" id="username">
-        <input type="text" name="password" id="password">
-
-        <input type="submit" value="login" name="login">
-    </form>
-</body>
-</html>
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167
