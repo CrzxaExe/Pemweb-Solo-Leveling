@@ -168,52 +168,45 @@ function renderAbilities(ownerId) {
 
     if (abilities.length === 0) {
         abilityList.innerHTML = '<p class="human-ability-empty">Belum ada ability.</p>';
+        const descEl = document.getElementById('ability-desc');
+        if (descEl) {
+            descEl.hidden = true;
+            descEl.textContent = '';
+        }
         return;
     }
 
-    // render two-column abilities: left = description panel, right = list of names
-    abilityList.innerHTML = `
-        <div class="human-abilities__body">
-            <div class="human-abilities__desc" id="ability-desc"></div>
-            <div class="human-abilities__names">
-                ${abilities.map((ability, i) => `
-                    <div class="human-ability" data-index="${i}" data-name="${escapeHtml(ability.ability_name)}" data-desc="${escapeHtml(ability.ability_description)}">
-                        <h2>${escapeHtml(ability.ability_name)}</h2>
-                    </div>
-                `).join("")}
-            </div>
-        </div>
-    `;
+    abilityList.innerHTML = abilities.map((ability, i) => `
+        <button type="button" class="human-ability ${i === 0 ? 'is-open' : ''}"
+                data-desc="${escapeHtml(ability.ability_description)}">
+            <span class="human-ability__name">${escapeHtml(ability.ability_name)}</span>
+        </button>
+    `).join("");
 
-    // bind toggles for the names
     bindAbilityToggles();
+
+    const first = abilityList.querySelector('.human-ability');
+    const descEl = document.getElementById('ability-desc');
+    if (first && descEl) {
+        descEl.textContent = first.dataset.desc || '';
+        descEl.hidden = false;
+    }
 }
 
 function bindAbilityToggles() {
     const descEl = document.getElementById('ability-desc');
     const items = Array.from(abilityList.querySelectorAll('.human-ability'));
-    items.forEach(item => {
-        item.removeEventListener('click', item._toggleHandler);
-        const handler = (e) => {
-            if (e.target.closest('a,button')) return;
-            const isOpen = item.classList.contains('is-open');
-            // close all
-            items.forEach(it => it.classList.remove('is-open'));
-            if (isOpen) {
-                // was open -> close
-                descEl.innerHTML = '';
-            } else {
-                // open this one
-                item.classList.add('is-open');
-                descEl.innerHTML = `
-<div class="ability-popup">
-    ${escapeHtml(item.dataset.desc)}
-</div>
-`;
-            }
-        };
-        item._toggleHandler = handler;
-        item.addEventListener('click', handler);
+
+    if (!descEl) return;
+
+    items.forEach((item) => {
+        item.addEventListener('click', () => {
+            items.forEach((it) => it.classList.remove('is-open'));
+            item.classList.add('is-open');
+
+            descEl.textContent = item.dataset.desc || '';
+            descEl.hidden = false;
+        });
     });
 }
 
