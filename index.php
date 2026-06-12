@@ -168,12 +168,6 @@ Solo Leveling (나 혼자만 레벨업) adalah novel web Korea yang ditulis oleh
         </section>
     </main>
 
-<<<<<<< HEAD
     <script src="public/js/script.js"></script>
 </body>
 </html>
-=======
-    <script src="js/script.js"></script>
-</body>
-</html>
->>>>>>> b26334a20541f4331088f3a16faac4e975b02167

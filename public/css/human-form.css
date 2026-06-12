@@ -323,7 +323,7 @@ a {
 
 .human-edit-php .image {
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   border: 0;
 }
 

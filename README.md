@@ -9,4 +9,4 @@ Anggota:
 
 ## Overview
 
-Solo Wiki adalah website wikipedia dari ...
+Solo Wiki adalah website wikipedia dari Manhwa berjudul Solo Leveling

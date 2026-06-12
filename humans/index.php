@@ -12,7 +12,7 @@ include_once __DIR__ . '/../components/topbar.php';
 
 $db = new Database();
 // Ambil kolom dengan alias agar mudah diakses di view
-$humans = $db->find("humans", "char_id AS id, char_name AS name, char_rank AS rank, char_description AS description, char_image AS image, char_guild AS guild, char_va AS va");
+$humans = $db->find("humans");
 ?>
 
 <!DOCTYPE html>
@@ -52,18 +52,18 @@ $humans = $db->find("humans", "char_id AS id, char_name AS name, char_rank AS ra
             <div class="grid grid--cards" style="display:flex;flex-wrap:wrap;gap:1rem;">
                 <?php foreach($humans as $h): ?>
                     <article class="card" style="width:260px;background:rgba(0,0,0,0.45);padding:1rem;border-radius:8px;">
-                        <div class="card-media" style="height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;background:#111;">
-                            <?php if(!empty($h['image'])): ?>
-                                <img src="<?= htmlspecialchars($h['image']) ?>" alt="<?= htmlspecialchars($h['name']) ?>" style="max-width:100%;height:auto;">
+                        <div class="card-media" style="height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;background:#111;object-position:top">
+                            <?php if(!empty($h['char_image'])): ?>
+                                <img src="<?= htmlspecialchars($h['char_image']) ?>" alt="<?= htmlspecialchars($h['char_name']) ?>" style="max-width:100%;object-fit:contain;object-position:top;transform:translateY(35%);">
                             <?php else: ?>
                                 <div style="color:#888;font-size:0.9rem;">No image</div>
                             <?php endif; ?>
                         </div>
 
                         <div class="card-body" style="padding-top:0.75rem;">
-                            <h3 style="margin:0 0 0.25rem 0;color:#fff;"><?= htmlspecialchars($h['name']) ?></h3>
-                            <div style="color:#9aa; font-size:0.9rem; margin-bottom:0.5rem;">Rank: <?= htmlspecialchars($h['rank']) ?></div>
-                            <p style="color:#cbd5e0; font-size:0.9rem; height:3.6rem; overflow:hidden;"><?= htmlspecialchars($h['description']) ?></p>
+                            <h3 style="margin:0 0 0.25rem 0;color:#fff;"><?= htmlspecialchars($h['char_name']) ?></h3>
+                            <div style="color:#9aa; font-size:0.9rem; margin-bottom:0.5rem;">Rank: <?= htmlspecialchars($h['char_rank']) ?></div>
+                            <p style="color:#cbd5e0; font-size:0.9rem; height:3.6rem; overflow:hidden;"><?= htmlspecialchars($h['char_description']) ?></p>
                         </div>
 
                         <div class="card-actions" style="display:flex;gap:0.5rem;margin-top:0.75rem;">
