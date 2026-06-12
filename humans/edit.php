@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             id="image"
                             required
                             name="image"
-                            type="url"
+                            type="text"
                             value="<?= $human["char_image"] ?>"
                             placeholder="Image Url"
                             aria-label="Image URL" />

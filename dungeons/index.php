@@ -39,9 +39,11 @@ include_once __DIR__ . '/../components/topbar.php';
     <header class="dungeon-page__header">
         <h1 class="wiki-title">DUNGEONS</h1>
 
+        <?php if(!empty($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
         <a class="wiki-btn wiki-plus" href="new.php" aria-label="Tambah dungeon">
             <?= dungeon_icon('plus') ?>
         </a>
+        <?php endif; ?>
     </header>
 
     <?php if (empty($dungeons)): ?>
@@ -64,6 +66,7 @@ include_once __DIR__ . '/../components/topbar.php';
                             </div>
                         </button>
 
+                        <?php if(!empty($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
                         <div class="wiki-actions">
                             <a class="wiki-btn wiki-btn--small"
                                href="delete.php?id=<?= urlencode($d['dungeon_id']) ?>"
@@ -78,6 +81,7 @@ include_once __DIR__ . '/../components/topbar.php';
                                 <?= dungeon_icon('edit') ?>
                             </a>
                         </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="dungeon-item__body">

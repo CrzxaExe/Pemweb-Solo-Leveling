@@ -115,7 +115,7 @@ $dungeons = (new Database())->find("dungeons");
                             id="image"
                             required
                             name="image"
-                            type="url"
+                            type="text"
                             value="<?= $monster["char_image"] ?>"
                             placeholder="Image Url"
                             aria-label="Image URL" />

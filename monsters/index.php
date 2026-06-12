@@ -89,6 +89,7 @@ include_once __DIR__ . '/../components/wiki-icons.php';
 <?php else: ?>
 
     <!-- ADD -->
+     <?php if(!empty($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
     <a class="wiki-btn monster-plus" href="new.php">
         <?php wiki_icon('plus'); ?>
     </a>
@@ -122,6 +123,7 @@ include_once __DIR__ . '/../components/wiki-icons.php';
         </a>
 
     </div>
+    <?php endif; ?>
 
     <!-- DETAIL -->
     <aside class="monster-detail">

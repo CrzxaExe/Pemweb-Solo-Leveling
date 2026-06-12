@@ -75,7 +75,7 @@ if (isset($_POST["add"])) {
                             id="image"
                             required
                             name="image"
-                            type="url"
+                            type="text"
                             placeholder="Image Url"
                             aria-label="Image URL" />
                     </label>

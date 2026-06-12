@@ -19,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form = [
         ":id" => $_POST["id"],
         ":name" => trim($_POST["name"] ?? ''),
-        ":location" => trim($_POST["location"] ?? ''),
+        ":rank" => trim($_POST["rank"] ?? ''),
         ":description" => trim($_POST["description"] ?? ''),
         ":image" => $_POST["image"] ?: null,
     ];
 
     $sql = "UPDATE dungeons SET
                 dungeon_name = :name,
-                dungeon_location = :location,
+                dungeon_rank = :rank,
                 dungeon_description = :description,
                 dungeon_image = :image
             WHERE dungeon_id = :id";
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             id="image"
                             required
                             name="image"
-                            type="url"
+                            type="text"
                             value="<?= $dungeon["dungeon_image"] ?>"
                             placeholder="Image Url"
                             aria-label="Image URL" />

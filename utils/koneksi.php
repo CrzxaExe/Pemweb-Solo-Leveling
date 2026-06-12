@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
 $username = "root";
-$password = "";
+$password = "CrzxaExe3#0312";
 $dbname = "wiki_solo_leveling";
 
 try {

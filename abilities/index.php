@@ -54,6 +54,7 @@ include_once __DIR__ . '/../components/wiki-icons.php';
     <section class="abilities-wrap">
 
         <!-- ADD BUTTON -->
+         <?php if(!empty($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
         <a
             class="wiki-btn wiki-plus"
             href="new.php<?= $ownerId ? '?owner_id=' . urlencode($ownerId) : '' ?>"
@@ -61,6 +62,7 @@ include_once __DIR__ . '/../components/wiki-icons.php';
         >
             <?php wiki_icon('plus'); ?>
         </a>
+        <?php endif; ?>
 
         <?php if (empty($abilities)): ?>
 

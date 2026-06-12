@@ -85,6 +85,7 @@ include_once __DIR__ . '/../components/topbar.php';
     <div class="human-abilities__desc" id="ability-desc" hidden></div>
 </aside>
 
+            <?php if(!empty($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
             <nav class="human-actions" aria-label="Human actions">
                 <a class="human-action" id="delete-link" href="delete.php?id=<?= htmlspecialchars($humans[$activeIndex]["char_id"]) ?>" onclick="return confirm('Hapus karakter ini?')" aria-label="Hapus karakter">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 2h4v2H4V5h4l1-2Zm-2 6h10l-.7 11H7.7L7 9Zm3 2v7h2v-7h-2Zm4 0v7h2v-7h-2Z"/></svg>
@@ -99,6 +100,7 @@ include_once __DIR__ . '/../components/topbar.php';
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 16.8 11.5-11.5 3.2 3.2L7.2 20H4v-3.2ZM17 3.8l1.2-1.2a1.5 1.5 0 0 1 2.1 0l1.1 1.1a1.5 1.5 0 0 1 0 2.1L20.2 7 17 3.8Z"/></svg>
                 </a>
             </nav>
+            <?php endif; ?>
         </section>
 
         <section class="human-thumbnails" aria-label="Choose human character">
