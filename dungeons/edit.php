@@ -41,20 +41,102 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dungeon Baru</title>
-</head>
-<body>
-    <form action="" method="post">
-        <input hidden type="text" name="id" id="id" value="<?= $dungeon['dungeon_id'] ?>">
-        <input type="text" name="name" id="name" value="<?= $dungeon['dungeon_name'] ?>">
-        <input type="text" name="location" id="location" value="<?= $dungeon['dungeon_location'] ?>">
-        <textarea name="description" id="description"><?= $dungeon['dungeon_description'] ?></textarea>
-        <input type="text" name="image" id="image" value="<?= $dungeon['dungeon_image'] ?>">
+    <title>Edit Dungeon</title>
 
-        <input type="submit" value="edit" name="edit">
-    </form>
+    <link rel="stylesheet" href="../public/main.css">
+    <link rel="stylesheet" href="../public/css/dungeon-form.css">
+</head>
+
+<body>
+    <main class="dungeons-edit-php">
+        <section class="frame" aria-labelledby="page-title">
+            <header class="div">
+                <a class="back" href="index.php" aria-label="Kembali">
+                    <span class="rectangle" aria-hidden="true"></span>
+                    <span class="text-wrapper">Kembali</span>
+                </a>
+                <h1 class="text-wrapper-2" id="page-title">Tambah</h1>
+            </header>
+            <section class="form" aria-label="Form edit dungeon">
+                <figure class="frame-2">
+                    <figcaption class="text-wrapper-3">Preview</figcaption>
+                    <img class="image" id="preview-image" src="<?= $dungeon["dungeon_image"] ?>" alt="Preview" />
+                </figure>
+                <form class="frame-3" action="" method="post">
+                    <input
+                            class="text-wrapper-4"
+                            id="id"
+                            required
+                            name="id"
+                            type="hidden"
+                            value="<?= $dungeon["dungeon_id"] ?>"
+                            placeholder="id"
+                            aria-label="id" />
+                    <label class="div-wrapper" for="name">
+                        <input
+                            class="text-wrapper-4"
+                            id="name"
+                            required
+                            name="name"
+                            type="text"
+                            value="<?= $dungeon["dungeon_name"] ?>"
+                            placeholder="Nama"
+                            aria-label="Name" />
+                    </label>
+                    <label class="div-wrapper" for="rank">
+                        <input
+                            class="text-wrapper-5"
+                            id="rank"
+                            required
+                            name="rank"
+                            type="text"
+                            value="<?= $dungeon["dungeon_rank"] ?>"
+                            placeholder="Rank"
+                            aria-label="Rank" />
+                    </label>
+                    <label class="div-wrapper" for="image">
+                        <input
+                            class="text-wrapper-4"
+                            id="image"
+                            required
+                            name="image"
+                            type="url"
+                            value="<?= $dungeon["dungeon_image"] ?>"
+                            placeholder="Image Url"
+                            aria-label="Image URL" />
+                    </label>
+                    <label class="deskripsi" for="description">
+                        <textarea
+                            class="text-wrapper-6"
+                            id="description"
+                            required
+                            name="description"
+                            placeholder="Deskripsi"
+                            aria-label="Deskripsi"><?= $dungeon["dungeon_description"] ?></textarea>
+                    </label>
+                    <button class="icon" name="add" value="add" type="submit" aria-label="Simpan">
+                        <span class="save" aria-hidden="true">
+                            <img class="vector" src="../public/svg/save.svg" alt="" />
+                        </span>
+                        <span class="text-wrapper-7">Simpan</span>
+                    </button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <script>
+        const url = document.getElementById("image");
+        const preview = document.getElementById("preview-image");
+
+        url.addEventListener("change", (e) => {
+            preview.src = e.target.value
+        })
+    </script>
 </body>
+
 </html>

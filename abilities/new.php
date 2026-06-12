@@ -2,27 +2,32 @@
 require "../utils/string.php";
 require "../utils/database.php";
 
-if(isset($_POST["add"])) {
-    $id = STR::random(6);
+session_start();
 
-    $form = [
-        ":id" => $id,
-        ":name" => trim($_POST["name"] ?? ''),
-        ":species" => trim($_POST["species"] ?? ''),
-        ":dungeon_id" => trim($_POST["dungeon_id"] ?? ''),
-        ":description" => trim($_POST["description"] ?? ''),
-        ":image" => $_POST["image"] ?: null,
-        ":va" => trim($_POST["va"] ?? ''),
-    ];
+$id = $_GET["id"] ?? '';
 
-    $stmt = (new Database())->db->prepare("INSERT INTO monsters VALUES (:id, :name, :species, :dungeon_id, :description, :image, :va)");
-    $stmt->execute($form);
-
-    header("Location: index.php");
-    exit();
+if(empty($id) /*|| $_SESSION['role'] != "admin"*/) {
+    echo "<script>history.back()</script>";
+    exit;
 }
 
-$dungeons = (new Database())->find("dungeons");
+if (isset($_POST["add"])) {
+    $idr = STR::random(6);
+
+    $form = [
+        ":id" => $idr,
+        ":owner_id" => trim($_POST["owner_id"] ?? ''),
+        ":name" => trim($_POST["name"] ?? ''),
+        ":type" => trim($_POST["type"] ?? ''),
+        ":description" => trim($_POST["description"] ?? ''),
+    ];
+
+    $stmt = (new Database())->db->prepare("INSERT INTO abilities VALUES (:id, :owner_id, :name, :type, :description)");
+    $stmt->execute($form);
+
+    header("Location: index.php?id=".$id);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,14 +36,24 @@ $dungeons = (new Database())->find("dungeons");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monster Baru</title>
+        <title>Kemampuan Baru</title>
 
     <link rel="stylesheet" href="../public/main.css">
-    <link rel="stylesheet" href="../public/css/monster-form.css">
+    <link rel="stylesheet" href="../public/css/dungeon-form.css">
+    <style>
+        .dungeons-edit-php .icon {
+            transform: translateX(0);
+        }
+
+        .dungeons-edit-php .frame {
+            min-height: auto;
+            justify-content: start;
+        }
+    </style>
 </head>
 
 <body>
-    <main class="monster-edit-php">
+    <main class="dungeons-edit-php">
         <section class="frame" aria-labelledby="page-title">
             <header class="div">
                 <a class="back" href="index.php" aria-label="Kembali">
@@ -48,10 +63,6 @@ $dungeons = (new Database())->find("dungeons");
                 <h1 class="text-wrapper-2" id="page-title">Tambah</h1>
             </header>
             <section class="form" aria-label="Form edit dungeon">
-                <figure class="frame-2">
-                    <figcaption class="text-wrapper-3">Preview</figcaption>
-                    <img class="image" id="preview-image" src="" alt="Preview" />
-                </figure>
                 <form class="frame-3" action="" method="post">
                     <label class="div-wrapper" for="name">
                         <input
@@ -61,32 +72,26 @@ $dungeons = (new Database())->find("dungeons");
                             name="name"
                             type="text"
                             placeholder="Nama"
-                            aria-label="Name" />
+                            aria-label="Nama" />
                     </label>
-                    <label class="div-wrapper" for="species">
                         <input
                             class="text-wrapper-5"
-                            id="species"
+                            id="owner_id"
                             required
-                            name="species"
-                            type="text"
-                            placeholder="Species"
-                            aria-label="Species" />
-                    </label>
-                    <select name="dungeon_id" id="dungeon_id" class="select-wrapper" required>
-                        <?php foreach($dungeons as $dungeon): ?>
-                            <option value="<?= $dungeon[0] ?>"><?= $dungeon[1] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <label class="div-wrapper" for="image">
+                            name="owner_id"
+                            type="hidden"
+                            value="<?= $id ?>"
+                            placeholder="Owner ID"
+                            aria-label="Owner ID" />
+                    <label class="div-wrapper" for="type">
                         <input
                             class="text-wrapper-4"
-                            id="image"
+                            id="type"
                             required
-                            name="image"
-                            type="url"
-                            placeholder="Image Url"
-                            aria-label="Image URL" />
+                            name="type"
+                            type="text"
+                            placeholder="Type"
+                            aria-label="Type" />
                     </label>
                     <label class="deskripsi" for="description">
                         <textarea
@@ -96,16 +101,6 @@ $dungeons = (new Database())->find("dungeons");
                             name="description"
                             placeholder="Deskripsi"
                             aria-label="Deskripsi"></textarea>
-                    </label>
-                    <label class="div-wrapper" for="va">
-                        <input
-                            class="text-wrapper-4"
-                            id="va"
-                            required
-                            name="va"
-                            type="text"
-                            placeholder="VA"
-                            aria-label="VA" />
                     </label>
                     <button class="icon" name="add" value="add" type="submit" aria-label="Simpan">
                         <span class="save" aria-hidden="true">
@@ -117,15 +112,6 @@ $dungeons = (new Database())->find("dungeons");
             </section>
         </section>
     </main>
-
-    <script>
-        const url = document.getElementById("image");
-        const preview = document.getElementById("preview-image");
-
-        url.addEventListener("change", (e) => {
-            preview.src = e.target.value
-        })
-    </script>
 </body>
 
 </html>

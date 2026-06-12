@@ -2,21 +2,38 @@
 require "../utils/string.php";
 require "../utils/database.php";
 
-if (isset($_POST["add"])) {
-    $id = STR::random(6);
+session_start();
 
+$id = $_GET["id"] ?? '';
+
+if(empty($id) /*|| $_SESSION['role'] != "admin"*/) {
+    echo "<script>history.back()</script>";
+    exit;
+}
+
+$d = new Database();
+$ability = $d->findOne("abilities", "id", $id);
+
+if (isset($_POST["edit"])) {
     $form = [
         ":id" => $id,
+        ":owner_id" => trim($_POST["owner_id"] ?? ''),
         ":name" => trim($_POST["name"] ?? ''),
-        ":rank" => trim($_POST["rank"] ?? ''),
+        ":type_pasif" => trim($_POST["type"] ?? ''),
         ":description" => trim($_POST["description"] ?? ''),
-        ":image" => $_POST["image"] ?: null,
     ];
 
-    $stmt = (new Database())->db->prepare("INSERT INTO dungeons VALUES (:id, :name, :rank, :description, :image)");
+    $sql = "UPDATE abilities SET
+                owner_id = :owner_id, 
+                ability_name = :name,
+                ability_type = :type_pasif,
+                ability_description = :description
+            WHERE id = :id";
+
+    $stmt = $d->db->prepare($sql);
     $stmt->execute($form);
 
-    header("Location: index.php");
+    header("Location: index.php?id=".$form[":owner_id"]);
     exit();
 }
 ?>
@@ -27,10 +44,20 @@ if (isset($_POST["add"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dungeon Baru</title>
+    <title>Kemampuan Baru</title>
 
     <link rel="stylesheet" href="../public/main.css">
     <link rel="stylesheet" href="../public/css/dungeon-form.css">
+    <style>
+        .dungeons-edit-php .icon {
+            transform: translateX(0);
+        }
+
+        .dungeons-edit-php .frame {
+            min-height: auto;
+            justify-content: start;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,13 +68,9 @@ if (isset($_POST["add"])) {
                     <span class="rectangle" aria-hidden="true"></span>
                     <span class="text-wrapper">Kembali</span>
                 </a>
-                <h1 class="text-wrapper-2" id="page-title">Tambah</h1>
+                <h1 class="text-wrapper-2" id="page-title">Edit</h1>
             </header>
             <section class="form" aria-label="Form edit dungeon">
-                <figure class="frame-2">
-                    <figcaption class="text-wrapper-3">Preview</figcaption>
-                    <img class="image" id="preview-image" src="" alt="Preview" />
-                </figure>
                 <form class="frame-3" action="" method="post">
                     <label class="div-wrapper" for="name">
                         <input
@@ -56,28 +79,29 @@ if (isset($_POST["add"])) {
                             required
                             name="name"
                             type="text"
+                            value="<?= $ability["ability_name"] ?>"
                             placeholder="Nama"
-                            aria-label="Name" />
+                            aria-label="Nama" />
                     </label>
-                    <label class="div-wrapper" for="rank">
                         <input
                             class="text-wrapper-5"
-                            id="rank"
+                            id="owner_id"
                             required
-                            name="rank"
-                            type="text"
-                            placeholder="Rank"
-                            aria-label="Rank" />
-                    </label>
-                    <label class="div-wrapper" for="image">
+                            name="owner_id"
+                            type="hidden"
+                            value="<?= $ability["owner_id"] ?>"
+                            placeholder="Owner ID"
+                            aria-label="Owner ID" />
+                    <label class="div-wrapper" for="type">
                         <input
                             class="text-wrapper-4"
-                            id="image"
+                            id="type"
                             required
-                            name="image"
-                            type="url"
-                            placeholder="Image Url"
-                            aria-label="Image URL" />
+                            name="type"
+                            type="text"
+                            value="<?= $ability["ability_type"] ?>"
+                            placeholder="Type"
+                            aria-label="Type" />
                     </label>
                     <label class="deskripsi" for="description">
                         <textarea
@@ -86,9 +110,9 @@ if (isset($_POST["add"])) {
                             required
                             name="description"
                             placeholder="Deskripsi"
-                            aria-label="Deskripsi"></textarea>
+                            aria-label="Deskripsi"><?= $ability["ability_description"] ?></textarea>
                     </label>
-                    <button class="icon" name="add" value="add" type="submit" aria-label="Simpan">
+                    <button class="icon" name="edit" value="edit" type="submit" aria-label="Simpan">
                         <span class="save" aria-hidden="true">
                             <img class="vector" src="../public/svg/save.svg" alt="" />
                         </span>
@@ -98,15 +122,6 @@ if (isset($_POST["add"])) {
             </section>
         </section>
     </main>
-
-    <script>
-        const url = document.getElementById("image");
-        const preview = document.getElementById("preview-image");
-
-        url.addEventListener("change", (e) => {
-            preview.src = e.target.value
-        })
-    </script>
 </body>
 
 </html>

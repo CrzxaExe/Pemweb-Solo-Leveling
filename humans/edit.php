@@ -45,22 +45,124 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>human Baru</title>
-</head>
-<body>
-    <form action="" method="post">
-        <input hidden type="text" name="id" id="id" value="<?= $human['char_id'] ?>">
-        <input type="text" name="name" id="name" value="<?= $human['char_name'] ?>">
-        <input type="text" name="rank" id="rank" value="<?= $human['char_rank'] ?>">
-        <textarea name="description" id="description"><?= $human['char_description'] ?></textarea>
-        <input type="text" name="image" id="image" value="<?= $human['char_image'] ?>">
-        <input type="text" name="guild" id="guild" value="<?= $human['char_guild'] ?>">
-        <input type="text" name="va" id="va" value="<?= $human['char_va'] ?>">
+    <title>Edit Human</title>
 
-        <input type="submit" value="edit" name="edit">
-    </form>
+    <link rel="stylesheet" href="../public/main.css">
+    <link rel="stylesheet" href="../public/css/human-form.css">
+</head>
+
+<body>
+    <main class="human-edit-php">
+        <section class="frame" aria-labelledby="page-title">
+            <header class="div">
+                <a class="back" href="index.php" aria-label="Kembali">
+                    <span class="rectangle" aria-hidden="true"></span>
+                    <span class="text-wrapper">Kembali</span>
+                </a>
+                <h1 class="text-wrapper-2" id="page-title">Edit</h1>
+            </header>
+            <section class="form" aria-label="Form edit dungeon">
+                <figure class="frame-2">
+                    <figcaption class="text-wrapper-3">Preview</figcaption>
+                    <img class="image" id="preview-image" src="<?= $human["char_image"] ?>" alt="Preview" />
+                </figure>
+                <form class="frame-3" action="" method="post">
+                    <input
+                            class="text-wrapper-4"
+                            id="id"
+                            required
+                            name="id"
+                            type="hidden"
+                            value="<?= $human["char_id"] ?>"
+                            placeholder="Nama"
+                            aria-label="Nama" />
+                    <label class="div-wrapper" for="name">
+                        <input
+                            class="text-wrapper-4"
+                            id="name"
+                            required
+                            name="name"
+                            type="text"
+                            value="<?= $human["char_name"] ?>"
+                            placeholder="Nama"
+                            aria-label="Name" />
+                    </label>
+                    <label class="div-wrapper" for="rank">
+                        <input
+                            class="text-wrapper-5"
+                            id="rank"
+                            required
+                            name="rank"
+                            type="text"
+                            value="<?= $human["char_rank"] ?>"
+                            placeholder="Rank"
+                            aria-label="Rank" />
+                    </label>
+                    <label class="div-wrapper" for="guild">
+                        <input
+                            class="text-wrapper-5"
+                            id="guild"
+                            required
+                            name="guild"
+                            type="text"
+                            value="<?= $human["char_guild"] ?>"
+                            placeholder="Guild"
+                            aria-label="Guild" />
+                    </label>
+                    <label class="div-wrapper" for="image">
+                        <input
+                            class="text-wrapper-4"
+                            id="image"
+                            required
+                            name="image"
+                            type="url"
+                            value="<?= $human["char_image"] ?>"
+                            placeholder="Image Url"
+                            aria-label="Image URL" />
+                    </label>
+                    <label class="deskripsi" for="description">
+                        <textarea
+                            class="text-wrapper-6"
+                            id="description"
+                            required
+                            name="description"
+                            placeholder="Deskripsi"
+                            aria-label="Deskripsi"><?= $human["char_description"] ?></textarea>
+                    </label>
+                    <label class="div-wrapper" for="va">
+                        <input
+                            class="text-wrapper-4"
+                            id="va"
+                            required
+                            name="va"
+                            type="text"
+                            value="<?= $human["char_va"] ?>"
+                            placeholder="VA"
+                            aria-label="VA" />
+                    </label>
+                    <button class="icon" name="add" value="add" type="submit" aria-label="Simpan">
+                        <span class="save" aria-hidden="true">
+                            <img class="vector" src="../public/svg/save.svg" alt="" />
+                        </span>
+                        <span class="text-wrapper-7">Simpan</span>
+                    </button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <script>
+        const url = document.getElementById("image");
+        const preview = document.getElementById("preview-image");
+
+        url.addEventListener("change", (e) => {
+            preview.src = e.target.value
+        })
+    </script>
 </body>
+
 </html>
