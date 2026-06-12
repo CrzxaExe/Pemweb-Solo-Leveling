@@ -1481,8 +1481,8 @@ a {
 
 .wiki-plus svg,
 .wiki-btn--small svg{
-    width: 22px;
-    height: 22px;
+    width: 21px;  
+    height: 21px;
     fill: currentColor;
 }
 
@@ -1606,7 +1606,145 @@ a {
     line-height: 1.55;
     text-transform: uppercase;
 }
+/*MONSTER*/
+.monster-page{
+    display:grid;
+    grid-template-columns:310px 1fr;
+    gap:44px;
+    padding-top:82px
+}
 
+.monster-detail{
+    position:sticky;
+    top:96px;
+    align-self:start
+}
+
+.monster-detail h1{
+    font-size:30px;
+    line-height:.9;
+    text-transform:uppercase;
+    letter-spacing:-.08em
+}
+
+.monster-detail .meta{
+    font-family:"Novecento-Light";
+    color:#aaa;
+    font-size:12px;
+    margin-bottom:14px
+}
+
+.monster-detail img{
+    width:310px;
+    height:250px;
+    object-fit:cover;
+    border-radius:7px
+}
+
+.monster-detail p{
+    font-family:"Novecento-Light";
+    font-size:16px;
+    line-height:1.16;
+    margin-top:16px;
+    color:#eee
+}
+
+.monster-detail h2{
+    font-size:22px;
+    margin-top:26px
+}
+
+.monster-abilities{
+    text-align:right;
+    font-family:"Novecento-Light"
+}
+
+.monster-abilities a{
+    display:block;
+    margin-top:8px;
+    color:#fff
+}
+
+.monster-abilities a:after{
+    content:"";
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border:3px solid #fff;
+    border-radius:2px;
+    margin-left:9px;
+    vertical-align:-2px
+}
+
+.monster-top-actions{
+    position:absolute;
+    left:240px;
+    top:160px
+}
+
+.monster-list-title{
+    font-size:34px;
+    margin-bottom:28px
+}
+
+.monster-grid{
+    display:grid;
+    grid-template-columns:repeat(8,88px);
+    gap:16px 18px
+}
+
+.monster-card{
+    width:88px;
+    background:#3a3a3a;
+    box-shadow:0 2px 6px #111;
+    cursor:pointer
+}
+
+.monster-card img{
+    width:88px;
+    height:76px;
+    object-fit:cover;
+    display:block
+}
+
+.monster-card__body{
+    padding:4px
+}
+
+.monster-card small{
+    font-size:7px;
+    color:#e0e0e0
+}
+
+.monster-card strong{
+    display:block;
+    font-size:12px;
+    line-height:1;
+    text-transform:uppercase;
+    letter-spacing:-.04em
+}
+
+.monster-card span{
+    display:block;
+    font-size:6px;
+    color:#bbb;
+    font-family:"Novecento-Light"
+}
+
+.monster-plus{
+    position:absolute;
+    right:40px;
+    top:118px
+}
+.monster-page .wiki-btn--small{
+    width: 24px;
+    height: 24px;
+}
+
+.monster-page .wiki-btn--small svg{
+    width: 12px;
+    height: 12px;
+}
 @media (max-width: 900px){
     .dungeon-item__body{
         grid-template-columns: 1fr;
